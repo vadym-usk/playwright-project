@@ -16,11 +16,7 @@ test.describe('Positive Tests', () => {
         const uniqueEmail = `test-email+${timestamp}@gmail.com`;
 
         await homePage.clickSignUpBtn();
-        await registrationPopup.nameInput.fill('testName');
-        await registrationPopup.lastNameInput.fill('testLastName');
-        await registrationPopup.emailInput.fill(uniqueEmail);
-        await registrationPopup.passwordInput.fill('Secretpass123');
-        await registrationPopup.reEnterPasswordInput.fill('Secretpass123');
+        await registrationPopup.fillRegistrationForm('testName', 'testLastName', uniqueEmail, 'Secretpass123');
         await registrationPopup.registerBtn.click();
 
         await expect(page).toHaveURL(new RegExp(garagePage.url + '$'));
