@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../../pages/homePage';
-import { RegistrationPopup } from '../../pages/registrationPopup';
-import { GaragePage } from '../../pages/garagePage';
+import { HomePage } from '../../src/pages/homePage';
+import { RegistrationPopup } from '../../src/pages/registrationPopup';
+import { GaragePage } from '../../src/pages/garagePage';
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
