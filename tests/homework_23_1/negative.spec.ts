@@ -2,15 +2,17 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../../src/pages/homePage';
 import { RegistrationPopup } from '../../src/pages/registrationPopup';
 
-test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-});
-
 test.describe('Negative Tests', () => {
-    test('Check registration popup with empty fields', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const registrationPopup = new RegistrationPopup(page);
+    let homePage;
+    let registrationPopup;
+    
+    test.beforeEach(async ({ page }) => {
+        await page.goto('/');
+        homePage = new HomePage(page);
+        registrationPopup = new RegistrationPopup(page);
+    });
 
+    test('Check registration popup with empty fields', async ({ page }) => {
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm('', '', '', '');
         await registrationPopup.registrationTitle.click();
@@ -24,9 +26,6 @@ test.describe('Negative Tests', () => {
     });
 
     test('Check registration popup with wrong data', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const registrationPopup = new RegistrationPopup(page);
-
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm(' фылаорыкуадка', 'флвоы аикуло ', 'testemail.com', 'test');
         await registrationPopup.registrationTitle.click();
@@ -40,9 +39,6 @@ test.describe('Negative Tests', () => {
     });
 
     test('Check registration popup with wrong length for Name, Last Name and Password fields', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const registrationPopup = new RegistrationPopup(page);
-
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm('t', 'testLastNametestLastN', 'test-email+1@gmail.com', '1Gsd1Gsd1Gsd1Gsd');
         await registrationPopup.registrationTitle.click();
@@ -55,9 +51,6 @@ test.describe('Negative Tests', () => {
     });
 
     test('Check registration popup with special symbols for Password field', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const registrationPopup = new RegistrationPopup(page);
-
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm('testName', 'testLastName', 'test-email+1@gmail.com', 'secretpasstttt');
         await registrationPopup.registrationTitle.click();
@@ -68,9 +61,6 @@ test.describe('Negative Tests', () => {
     });
 
     test('Check registration popup with not matched passwords', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const registrationPopup = new RegistrationPopup(page);
-
         await homePage.clickSignUpBtn();
         await registrationPopup.nameInput.fill('testName');
         await registrationPopup.lastNameInput.fill('testLastName');
