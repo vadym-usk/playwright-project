@@ -1,17 +1,21 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../../pages/homePage';
-import { RegistrationPopup } from '../../pages/registrationPopup';
-import { GaragePage } from '../../pages/garagePage';
-
-test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-});
+import { HomePage } from '../../src/pages/homePage';
+import { RegistrationPopup } from '../../src/pages/registrationPopup';
+import { GaragePage } from '../../src/pages/garagePage';
 
 test.describe('Positive Tests', () => {
+    let homePage;
+    let registrationPopup;
+    let garagePage;
+
+    test.beforeEach(async ({ page }) => {
+        await page.goto('/');
+        homePage = new HomePage(page);
+        registrationPopup = new RegistrationPopup(page);
+        garagePage = new GaragePage(page);
+    });
+
     test('User registration', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const registrationPopup = new RegistrationPopup(page);
-        const garagePage = new GaragePage(page);
         const timestamp = Date.now();
         const uniqueEmail = `test-email+${timestamp}@gmail.com`;
 
