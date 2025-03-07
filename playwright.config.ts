@@ -16,6 +16,10 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: process.env.BASE_URL,
+    httpCredentials: {
+      username: process.env.HTTP_CREDENTIALS_USERNAME as string,
+      password: process.env.HTTP_CREDENTIALS_PASSWORD as string,
+    },
     headless: true,
     screenshot: 'on',
     video: 'retain-on-failure',
@@ -23,16 +27,22 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'QA',
+      use: {
+        baseURL: process.env.BASE_URL_QA
+      },
     },
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    {
+      name: 'PROD',
+      use: {
+        baseURL: process.env.BASE_URL_PROD
+      },
+    },
+    {
+      name: 'TEST',
+      use: {
+        baseURL: process.env.BASE_URL_TEST
+      }
+    }
   ],
 });
