@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test && npx playwright show-report",
-    "test:headed": "npx playwright test --headed",
-    "test:debug": "npx playwright test --debug",
-    "report": "npx playwright show-report"
+    "qa": "BASE_URL_QA=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=QA && npx playwright show-report",
+    "prod": "BASE_URL_PROD=https://guest:welcome2qauto@qauto2.forstudy.space npx playwright test --project=PROD && npx playwright show-report",
+    "test": "BASE_URL_TEST=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST && npx playwright show-report"
   },
   "repository": {
     "type": "git",
