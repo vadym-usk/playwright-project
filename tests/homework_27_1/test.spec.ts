@@ -1,14 +1,8 @@
-import { test } from '@playwright/test';
+import { test } from '../fixtures/fixtures';
 
 test.describe('Positive Tests', () => {
-    test.only('Check Garage page for logged-in user', async ({ page }, testInfo) => {
-        //const config = testInfo.project.use;
-        //console.log('BASE_URL:', config.baseURL);
-        //console.log('Username:', config.httpCredentials?.username);
-        //console.log('Password:', config.httpCredentials?.password);
-
-        console.log('Basic test for Homework');
-
-        await page.goto('/');
+    test.only('Check the empty Garage page for logged-in user', async ({ userGaragePage }) => {
+        await userGaragePage.goto();
+        await userGaragePage.assertEmptyGarageList();
     });
 });
