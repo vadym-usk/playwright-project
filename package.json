@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "qa": "BASE_URL_QA=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=QA && npx playwright show-report",
-    "prod": "BASE_URL_PROD=https://guest:welcome2qauto@qauto2.forstudy.space npx playwright test --project=PROD && npx playwright show-report",
-    "test": "BASE_URL_TEST=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST && npx playwright show-report"
+    "show-report": "npx playwright show-report",
+    "qa:setup": "BASE_URL_QA=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=QA:setup",
+    "qa:run": "BASE_URL_QA=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=QA:run",
+    "qa": "npm run qa:setup && npm run qa:run && npm run show-report",
+    "prod:setup": "BASE_URL_PROD=https://guest:welcome2qauto@qauto2.forstudy.space npx playwright test --project=PROD:setup",
+    "prod:run": "BASE_URL_PROD=https://guest:welcome2qauto@qauto2.forstudy.space npx playwright test --project=PROD:run",
+    "prod": "npm run prod:setup && npm run prod:run && npm run show-report",
+    "test:setup": "BASE_URL_TEST=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:setup",
+    "test:run": "BASE_URL_TEST=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:run",
+    "test": "npm run test:setup && npm run test:run && npm run show-report"
   },
   "repository": {
     "type": "git",
@@ -21,8 +28,9 @@
   },
   "homepage": "https://github.com/vadym-usk/playwright-project#readme",
   "devDependencies": {
-    "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.4"
+    "@playwright/test": "^1.51.0",
+    "@types/node": "^22.13.4",
+    "allure-playwright": "^3.2.0"
   },
   "dependencies": {
     "dotenv": "^16.4.7"
