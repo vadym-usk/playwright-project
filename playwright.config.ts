@@ -31,45 +31,33 @@ export default defineConfig({
   projects: [
     {
       name: 'QA:setup',
-      use: {
-        baseURL: process.env.BASE_URL_QA,
-      },
       testMatch: 'tests/setup/setup.spec.ts'
     },
     {
       name: 'QA:run',
       use: {
-        baseURL: process.env.BASE_URL_QA,
         storageState: 'tests/storage/auth.json'
       },
       testIgnore: 'tests/setup/*.spec.ts'
     },
     {
       name: 'PROD:setup',
-      use: {
-        baseURL: process.env.BASE_URL_PROD,
-      },
       testMatch: 'tests/setup/setup.spec.ts'
     },
     {
       name: 'PROD:run',
       use: {
-        baseURL: process.env.BASE_URL_PROD,
         storageState: 'tests/storage/auth.json'
       },
       testIgnore: 'tests/setup/*.spec.ts'
     },
     {
       name: 'TEST:setup',
-      use: {
-        baseURL: process.env.BASE_URL_TEST,
-      },
       testMatch: 'tests/setup/setup.spec.ts'
     },
     {
       name: 'TEST:run',
       use: {
-        baseURL: process.env.BASE_URL_TEST,
         storageState: 'tests/storage/auth.json'
       },
       testIgnore: 'tests/setup/*.spec.ts'
