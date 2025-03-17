@@ -13,7 +13,10 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [
+    ['html'],
+    ['allure-playwright']
+  ],
   use: {
     baseURL: process.env.BASE_URL,
     httpCredentials: {
@@ -27,22 +30,37 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'QA',
-      use: {
-        baseURL: process.env.BASE_URL_QA
-      },
+      name: 'QA:setup',
+      testMatch: 'tests/setup/setup.spec.ts'
     },
     {
-      name: 'PROD',
+      name: 'QA:run',
       use: {
-        baseURL: process.env.BASE_URL_PROD
+        storageState: 'tests/storage/auth.json'
       },
+      testIgnore: 'tests/setup/*.spec.ts'
     },
     {
-      name: 'TEST',
+      name: 'PROD:setup',
+      testMatch: 'tests/setup/setup.spec.ts'
+    },
+    {
+      name: 'PROD:run',
       use: {
-        baseURL: process.env.BASE_URL_TEST
-      }
+        storageState: 'tests/storage/auth.json'
+      },
+      testIgnore: 'tests/setup/*.spec.ts'
+    },
+    {
+      name: 'TEST:setup',
+      testMatch: 'tests/setup/setup.spec.ts'
+    },
+    {
+      name: 'TEST:run',
+      use: {
+        storageState: 'tests/storage/auth.json'
+      },
+      testIgnore: 'tests/setup/*.spec.ts'
     }
   ],
 });
