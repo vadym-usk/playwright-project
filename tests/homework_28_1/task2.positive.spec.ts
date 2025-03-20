@@ -10,10 +10,10 @@ test.describe('Task 2: Positive tests', () => {
         apiContext = await playwright.request.newContext();
     });
 
-    test('Add new car to the garage', async ({ login }) => {
+    test('Add new car to the garage', async ({ baseURL, login }) => {
         const page = await login;
 
-        const addCar = await apiContext.post('https://qauto.forstudy.space/api/cars', {
+        const addCar = await apiContext.post(`${baseURL}/api/cars`, {
             data: {
                 "carBrandId": 1,
                 "carModelId": 1,
@@ -40,8 +40,8 @@ test.describe('Task 2: Positive tests', () => {
         expect(responseData.data.logo).toBe("audi.png");
     });
 
-    test.afterEach(async () => {
-        const deleteCar = await apiContext.delete(`https://qauto.forstudy.space/api/cars/${carId}`);
+    test.afterEach(async ({ baseURL }) => {
+        const deleteCar = await apiContext.delete(`${baseURL}/api/cars/${carId}`);
         const responseData = await deleteCar.json();
         console.log("API Response:", responseData);
     });

@@ -9,10 +9,10 @@ test.describe('Task 2: Negative tests', () => {
         apiContext = await playwright.request.newContext();
     });
 
-    test('Add new car to the garage with negative mileage', async ({ login }) => {
+    test('Add new car to the garage with negative mileage', async ({ baseURL, login }) => {
         const page = await login;
 
-        const addCar = await apiContext.post('https://qauto.forstudy.space/api/cars', {
+        const addCar = await apiContext.post(`${baseURL}/api/cars`, {
             data: {
                 "carBrandId": 1,
                 "carModelId": 1,
@@ -28,10 +28,10 @@ test.describe('Task 2: Negative tests', () => {
         expect(responseData.message).toBe("Mileage has to be from 0 to 999999");
     });
 
-    test('Add new car to the garage with wrong carBrandId', async ({ login }) => {
+    test('Add new car to the garage with wrong carBrandId', async ({ baseURL, login }) => {
         const page = await login;
 
-        const addCar = await apiContext.post('https://qauto.forstudy.space/api/cars', {
+        const addCar = await apiContext.post(`${baseURL}/api/cars`, {
             data: {
                 "carBrandId": 0,
                 "carModelId": 1,
