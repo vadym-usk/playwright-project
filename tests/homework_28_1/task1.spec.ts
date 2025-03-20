@@ -2,7 +2,6 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/fixtures';
 import { ProfilePage } from '../../src/pages/profilePage';
 
-
 test.describe('Task 1', () => {
     let profilePage;
 
@@ -11,7 +10,7 @@ test.describe('Task 1', () => {
         profilePage = new ProfilePage(page);
     });
 
-    test.only('Comparing the frontend data with API response', async ({ login }) => {
+    test('Comparing the frontend data with API response', async ({ login }) => {
         const page = await login;
 
         const responsePromise = page.waitForResponse('**/api/users/profile');
