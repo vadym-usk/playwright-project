@@ -7,6 +7,7 @@ export type MyFixture = {
         goto: () => Promise<void>;
         assertEmptyGarageList: () => Promise<void>;
     };
+    login: any;
 }
 
 export const test = base.extend<MyFixture>({
@@ -32,6 +33,17 @@ export const test = base.extend<MyFixture>({
         };
 
         await use(userGaragePage);
+        await page.close();
+        await context.close();
+    },
+
+    login: async ({ browser }, use) => {
+        const context = await browser.newContext({
+            storageState: path.resolve(__dirname, '../storage/auth.json')
+        });
+        const page = await context.newPage();
+
+        await use(page);
         await page.close();
         await context.close();
     },
