@@ -13,7 +13,7 @@
     "prod": "npm run prod:setup && npm run prod:run && npm run show-report",
     "test:setup": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space HTTP_CREDENTIALS_USERNAME=test-email+1@gmail.com HTTP_CREDENTIALS_PASSWORD=Secretpass123 npx playwright test --project=TEST:setup",
     "test:run": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:run",
-    "test": "npm run test:setup && npm run test:run && npm run show-report"
+    "test": "npm run test:setup && npm run test:run"
   },
   "repository": {
     "type": "git",
