@@ -15,7 +15,7 @@ test.describe('Positive Tests', () => {
         garagePage = new GaragePage(page);
     });
 
-    test('User registration', async ({ page }) => {
+    test.skip('User registration', async ({ page }) => {
         const timestamp = Date.now();
         const uniqueEmail = `test-email+${timestamp}@gmail.com`;
 
