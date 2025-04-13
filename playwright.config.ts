@@ -30,37 +30,22 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'QA:setup',
-      testMatch: 'tests/setup/setup.spec.ts'
-    },
-    {
-      name: 'QA:run',
-      use: {
-        storageState: 'tests/storage/auth.json'
-      },
-      testIgnore: 'tests/setup/*.spec.ts'
-    },
-    {
-      name: 'PROD:setup',
-      testMatch: 'tests/setup/setup.spec.ts'
-    },
-    {
-      name: 'PROD:run',
-      use: {
-        storageState: 'tests/storage/auth.json'
-      },
-      testIgnore: 'tests/setup/*.spec.ts'
-    },
-    {
       name: 'TEST:setup',
       testMatch: 'tests/setup/setup.spec.ts'
+    },
+    {
+      name: 'TEST:run:auth',
+      testMatch: 'tests/auth/*.spec.ts'
     },
     {
       name: 'TEST:run',
       use: {
         storageState: 'tests/storage/auth.json'
       },
-      testIgnore: 'tests/setup/*.spec.ts'
+      testIgnore: [
+        'tests/setup/*.spec.ts',
+        'tests/auth/*.spec.ts'
+      ]
     }
   ],
 });
