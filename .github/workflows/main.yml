@@ -27,7 +27,11 @@ jobs:
             -e BASE_URL="${{ secrets.BASE_URL }}" \
             -e HTTP_CREDENTIALS_USERNAME="${{ secrets.HTTP_CREDENTIALS_USERNAME }}" \
             -e HTTP_CREDENTIALS_PASSWORD="${{ secrets.HTTP_CREDENTIALS_PASSWORD }}" \
-            playwright-tests
+            playwright-tests sh -c "
+              npm run test:run:auth &&
+              npm run test:setup &&
+              npm run test:run:base
+            "
 
       - name: ☕ Set up Java for Allure
         uses: actions/setup-java@v3
