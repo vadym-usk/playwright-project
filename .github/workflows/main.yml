@@ -1,4 +1,4 @@
-name: Run Playwright in Docker
+name: Run Playwright tests with Allure in Docker
 
 on:
   push:
@@ -11,23 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
 
-      - name: Build Docker Image
+      - name: 🐳 Build Docker Image
         run: docker build -t playwright-tests .
 
-      - name: Run Playwright tests in Docker
+      - name: 🧪 Run Playwright tests in Docker
         run: |
           docker run --rm \
-            -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
+            -v ${{ github.workspace }}/allure-results:/app/allure-results \
+            -v ${{ github.workspace }}/allure-report:/app/allure-report \
             -e BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space \
             -e HTTP_CREDENTIALS_USERNAME=test-email+1@gmail.com \
             -e HTTP_CREDENTIALS_PASSWORD=Secretpass123 \
             playwright-tests
 
-      - name: Upload HTML Report
+      - name: 📁 Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
-          path: playwright-report
+          name: allure-report
+          path: allure-report

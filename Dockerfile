@@ -3,4 +3,5 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-CMD ["npm", "run", "test"]
+RUN npm install -g allure-commandline --unsafe-perm=true
+CMD ["npm", "run", "test:run:all"]
