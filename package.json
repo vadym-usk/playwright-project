@@ -8,7 +8,7 @@
     "test:run:auth": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:run:auth",
     "test:run:base": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:run:base",
     "test:run:all": "npm run allure:clean && npm run test:run:auth && npm run test:setup && npm run test:run:base && npm run allure:generate && npm run allure:open",
-    "test:run:all:docker": "npm run test:run:auth && npm run test:setup && npm run test:run:base && npm run allure:generate && npm run allure:open",
+    "test:run:all:docker": "npm run test:run:auth && npm run test:setup && npm run test:run:base",
     "show-report": "npx playwright show-report",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report",
