@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:setup": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space HTTP_CREDENTIALS_USERNAME=test-email+1@gmail.com HTTP_CREDENTIALS_PASSWORD=Secretpass123 npx playwright test --project=TEST:setup",
-    "test:run:auth": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:run:auth",
-    "test:run:base": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:run:base",
+    "test:setup": "BASE_URL=https://example.com HTTP_CREDENTIALS_USERNAME=test@email.com HTTP_CREDENTIALS_PASSWORD=password npx playwright test --project=TEST:setup",
+    "test:run:auth": "BASE_URL=https://example.com npx playwright test --project=TEST:run:auth",
+    "test:run:base": "BASE_URL=https://example.com npx playwright test --project=TEST:run:base",
     "test:run:all": "npm run allure:clean && npm run test:run:auth && npm run test:setup && npm run test:run:base && npm run allure:generate && npm run allure:open",
     "test:run:all:docker": "npm run test:run:auth && npm run test:setup && npm run test:run:base",
     "show-report": "npx playwright show-report",
