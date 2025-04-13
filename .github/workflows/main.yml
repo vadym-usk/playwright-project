@@ -28,9 +28,9 @@ jobs:
             -e HTTP_CREDENTIALS_USERNAME="${{ secrets.HTTP_CREDENTIALS_USERNAME }}" \
             -e HTTP_CREDENTIALS_PASSWORD="${{ secrets.HTTP_CREDENTIALS_PASSWORD }}" \
             playwright-tests sh -c "
-              npm run test:run:auth &&
-              npm run test:setup &&
-              npm run test:run:base
+              npx playwright test --project=TEST:run:auth &&
+              npx playwright test --project=TEST:setup &&
+              npx playwright test --project=TEST:run:base
             "
 
       - name: ☕ Set up Java for Allure
