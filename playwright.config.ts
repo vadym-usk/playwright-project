@@ -38,7 +38,7 @@ export default defineConfig({
       testMatch: 'tests/auth/*.spec.ts'
     },
     {
-      name: 'TEST:run',
+      name: 'TEST:run:base',
       use: {
         storageState: 'tests/storage/auth.json'
       },
