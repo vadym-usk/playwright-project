@@ -4,4 +4,4 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm install -g allure-commandline --unsafe-perm=true
-CMD ["npm", "run", "test:run:all"]
+CMD ["npm", "run", "test:run:all:docker"]
