@@ -1,7 +1,7 @@
 import { expect, APIRequestContext } from '@playwright/test';
 import { test } from '../fixtures/fixtures';
 
-test.describe('Task 2: Negative tests', () => {
+test.describe('Garage - Negative', () => {
     let apiContext: APIRequestContext;
 
     test.beforeEach(async ({ playwright, login }) => {

@@ -3,7 +3,7 @@ import { HomePage } from '../../src/pages/homePage';
 import { RegistrationPopup } from '../../src/pages/registrationPopup';
 import { GaragePage } from '../../src/pages/garagePage';
 
-test.describe('Positive Tests', () => {
+test.describe('Auth - Positive', () => {
     let homePage;
     let registrationPopup;
     let garagePage;
@@ -15,7 +15,7 @@ test.describe('Positive Tests', () => {
         garagePage = new GaragePage(page);
     });
 
-    test.skip('User registration', async ({ page }) => {
+    test('User registration', async ({ page }) => {
         const timestamp = Date.now();
         const uniqueEmail = `test-email+${timestamp}@gmail.com`;
 
