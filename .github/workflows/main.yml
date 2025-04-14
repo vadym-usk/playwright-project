@@ -10,14 +10,6 @@ jobs:
   playwright-tests:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        include:
-          - env: TEST
-            BASE_URL: ${{ secrets.BASE_URL_TEST }}
-            USERNAME: ${{ secrets.USERNAME_TEST }}
-            PASSWORD: ${{ secrets.PASSWORD_TEST }}
-
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -28,17 +20,17 @@ jobs:
       - name: 🐳 Build Docker Image
         run: docker build -t playwright-tests .
 
-      - name: 🚀 Run Playwright tests for ${{ matrix.env }} env
+      - name: 🚀 Run Playwright tests in Docker
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/allure-results:/app/allure-results \
-            -e BASE_URL="${{ matrix.BASE_URL }}" \
-            -e HTTP_CREDENTIALS_USERNAME="${{ matrix.USERNAME }}" \
-            -e HTTP_CREDENTIALS_PASSWORD="${{ matrix.PASSWORD }}" \
+            -e BASE_URL="${{ secrets.BASE_URL }}" \
+            -e HTTP_CREDENTIALS_USERNAME="${{ secrets.HTTP_CREDENTIALS_USERNAME }}" \
+            -e HTTP_CREDENTIALS_PASSWORD="${{ secrets.HTTP_CREDENTIALS_PASSWORD }}" \
             playwright-tests sh -c "
-              npx playwright test --project=${{ matrix.env }}:run:auth &&
-              npx playwright test --project=${{ matrix.env }}:setup &&
-              npx playwright test --project=${{ matrix.env }}:run:base
+              npx playwright test --project=TEST:run:auth &&
+              npx playwright test --project=TEST:setup &&
+              npx playwright test --project=TEST:run:base
             "
 
       - name: ☕ Set up Java for Allure
@@ -50,11 +42,11 @@ jobs:
       - name: 📦 Install Allure CLI
         run: npm install -g allure-commandline
 
-      - name: 📊 Generate Allure report for ${{ matrix.env }} env
-        run: allure generate allure-results --clean -o allure-report-${{ matrix.env }}
+      - name: 📊 Generate Allure report
+        run: allure generate allure-results --clean -o allure-report
 
-      - name: 📁 Upload Allure Report for ${{ matrix.env }} env
+      - name: 📁 Upload Allure Report as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report-${{ matrix.env }}
-          path: allure-report-${{ matrix.env }}
+          name: allure-report
+          path: allure-report
