@@ -1,5 +1,5 @@
 import { expect, APIRequestContext } from '@playwright/test';
-import { test } from '../fixtures/fixtures';
+import { test } from '../../fixtures/fixtures';
 
 test.describe('Garage - Negative', () => {
     let apiContext: APIRequestContext;

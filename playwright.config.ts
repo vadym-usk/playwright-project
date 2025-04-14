@@ -30,11 +30,11 @@ export default defineConfig({
   projects: [
     {
       name: 'TEST:setup',
-      testMatch: 'tests/setup/setup.spec.ts'
+      testMatch: 'tests/e2e/setup/setup.spec.ts'
     },
     {
       name: 'TEST:run:auth',
-      testMatch: 'tests/auth/*.spec.ts'
+      testMatch: 'tests/e2e/auth/*.spec.ts'
     },
     {
       name: 'TEST:run:base',
@@ -42,8 +42,8 @@ export default defineConfig({
         storageState: 'tests/storage/auth.json'
       },
       testIgnore: [
-        'tests/setup/*.spec.ts',
-        'tests/auth/*.spec.ts'
+        'tests/e2e/setup/*.spec.ts',
+        'tests/e2e/auth/*.spec.ts'
       ]
     }
   ],

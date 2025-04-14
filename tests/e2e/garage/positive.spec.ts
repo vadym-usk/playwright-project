@@ -1,6 +1,6 @@
 import { expect, APIRequestContext } from '@playwright/test';
-import { test } from '../fixtures/fixtures';
-import { ProfilePage } from '../../src/pages/profilePage';
+import { test } from '../../fixtures/fixtures';
+import { ProfilePage } from '../../../src/pages/profilePage';
 
 test.describe('Garage - Positive', () => {
     let apiContext: APIRequestContext;
@@ -44,7 +44,6 @@ test.describe('Garage - Positive', () => {
         });
 
         const responseData = await addCar.json();
-        console.log("API Response:", responseData);
         carId = responseData.data.id;
 
         expect(addCar.status()).toBe(201);
@@ -65,6 +64,5 @@ test.describe('Garage - Positive', () => {
     test.afterEach(async ({ baseURL }) => {
         const deleteCar = await apiContext.delete(`${baseURL}/api/cars/${carId}`);
         const responseData = await deleteCar.json();
-        console.log("API Response:", responseData);
     });
 });
