@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "",
+    "test:setup": "BASE_URL=https://example.com HTTP_CREDENTIALS_USERNAME=test@email.com HTTP_CREDENTIALS_PASSWORD=password npx playwright test --project=TEST:setup",
+    "test:run:auth": "BASE_URL=https://example.com npx playwright test --project=TEST:run:auth",
+    "test:run:base": "BASE_URL=https://example.com npx playwright test --project=TEST:run:base",
+    "test:run:all": "npm run allure:clean && npm run test:run:auth && npm run test:setup && npm run test:run:base && npm run allure:generate && npm run allure:open",
     "show-report": "npx playwright show-report",
-    "qa:setup": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space HTTP_CREDENTIALS_USERNAME=test-email+1@gmail.com HTTP_CREDENTIALS_PASSWORD=Secretpass123 npx playwright test --project=QA:setup",
-    "qa:run": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=QA:run",
-    "qa": "npm run qa:setup && npm run qa:run && npm run show-report",
-    "prod:setup": "BASE_URL=https://guest:welcome2qauto@qauto2.forstudy.space HTTP_CREDENTIALS_USERNAME=test-email+2@gmail.com HTTP_CREDENTIALS_PASSWORD=Secretpass123 npx playwright test --project=PROD:setup",
-    "prod:run": "BASE_URL=https://guest:welcome2qauto@qauto2.forstudy.space npx playwright test --project=PROD:run",
-    "prod": "npm run prod:setup && npm run prod:run && npm run show-report",
-    "test:setup": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space HTTP_CREDENTIALS_USERNAME=test-email+1@gmail.com HTTP_CREDENTIALS_PASSWORD=Secretpass123 npx playwright test --project=TEST:setup",
-    "test:run": "BASE_URL=https://guest:welcome2qauto@qauto.forstudy.space npx playwright test --project=TEST:run",
-    "test": "npm run test:setup && npm run test:run"
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:clean": "rm -rf allure-results allure-report"
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,8 @@
   "devDependencies": {
     "@playwright/test": "^1.51.0",
     "@types/node": "^22.13.4",
-    "allure-playwright": "^3.2.0"
+    "allure-commandline": "^2.33.0",
+    "allure-playwright": "^3.2.1"
   },
   "dependencies": {
     "dotenv": "^16.4.7"

@@ -14,7 +14,6 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
-    ['html'],
     ['allure-playwright']
   ],
   use: {
@@ -30,37 +29,22 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'QA:setup',
-      testMatch: 'tests/setup/setup.spec.ts'
-    },
-    {
-      name: 'QA:run',
-      use: {
-        storageState: 'tests/storage/auth.json'
-      },
-      testIgnore: 'tests/setup/*.spec.ts'
-    },
-    {
-      name: 'PROD:setup',
-      testMatch: 'tests/setup/setup.spec.ts'
-    },
-    {
-      name: 'PROD:run',
-      use: {
-        storageState: 'tests/storage/auth.json'
-      },
-      testIgnore: 'tests/setup/*.spec.ts'
-    },
-    {
       name: 'TEST:setup',
       testMatch: 'tests/setup/setup.spec.ts'
     },
     {
-      name: 'TEST:run',
+      name: 'TEST:run:auth',
+      testMatch: 'tests/auth/*.spec.ts'
+    },
+    {
+      name: 'TEST:run:base',
       use: {
         storageState: 'tests/storage/auth.json'
       },
-      testIgnore: 'tests/setup/*.spec.ts'
+      testIgnore: [
+        'tests/setup/*.spec.ts',
+        'tests/auth/*.spec.ts'
+      ]
     }
   ],
 });

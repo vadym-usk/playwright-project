@@ -1,13 +1,35 @@
 import { expect, APIRequestContext } from '@playwright/test';
 import { test } from '../fixtures/fixtures';
+import { ProfilePage } from '../../src/pages/profilePage';
 
-test.describe('Task 2: Positive tests', () => {
+test.describe('Garage - Positive', () => {
     let apiContext: APIRequestContext;
     let carId: number | undefined;
+    let profilePage;
 
     test.beforeEach(async ({ playwright, login }) => {
         const page = await login;
         apiContext = await playwright.request.newContext();
+        profilePage = new ProfilePage(page);
+    });
+
+    test('Check the empty Garage page for logged-in user', async ({ userGaragePage }) => {
+        await userGaragePage.goto();
+        await userGaragePage.assertEmptyGarageList();
+    });
+
+    test('Comparing the frontend data with API response', async ({ login }) => {
+        const page = await login;
+
+        const responsePromise = page.waitForResponse('**/api/users/profile');
+        await page.goto(profilePage.url);
+        const apiResponse = await (await responsePromise).json();
+
+        const fullName = await profilePage.profileName.textContent();
+        const [uiName, uiLastName] = fullName.split(" ");
+
+        expect(uiName).toBe(apiResponse.data.name);
+        expect(uiLastName).toBe(apiResponse.data.lastName);
     });
 
     test('Add new car to the garage', async ({ baseURL, login }) => {
