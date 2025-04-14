@@ -119,14 +119,14 @@ These are injected into Docker containers during Cypress test runs.
     └── workflows/
         └── main.yml
 ├── src/
-│       └── components/
-│       └── pages/
-│       └── utils/
+│   └── components/
+│   └── pages/
+│   └── utils/
 ├── tests/
-│       └── e2e/
-│              └── garage/
-│                  └── negative.spec.ts
-│                  └── positive.spec.ts
+│   └── e2e/
+│       └── garage/
+│           └── negative.spec.ts
+│           └── positive.spec.ts
 ├── .dockerignore
 ├── .env.example
 ├── .gitignore
