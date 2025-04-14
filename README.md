@@ -123,9 +123,10 @@ These are injected into Docker containers during Cypress test runs.
 │       └── pages/
 │       └── utils/
 ├── tests/
-│       └── garage/
-│           └── negative.spec.ts
-│           └── positive.spec.ts
+│       └── e2e/
+│              └── garage/
+│                  └── negative.spec.ts
+│                  └── positive.spec.ts
 ├── .dockerignore
 ├── .env.example
 ├── .gitignore
