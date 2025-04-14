@@ -12,7 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        env: [TEST]
+        include:
+          - env: TEST
+            BASE_URL: ${{ secrets.BASE_URL_TEST }}
+            USERNAME: ${{ secrets.USERNAME_TEST }}
+            PASSWORD: ${{ secrets.PASSWORD_TEST }}
 
     steps:
       - name: 📥 Checkout code
@@ -28,9 +32,9 @@ jobs:
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/allure-results:/app/allure-results \
-            -e BASE_URL="${{ secrets['BASE_URL_' + matrix.env] }}" \
-            -e HTTP_CREDENTIALS_USERNAME="${{ secrets['USERNAME_' + matrix.env] }}" \
-            -e HTTP_CREDENTIALS_PASSWORD="${{ secrets['PASSWORD_' + matrix.env] }}" \
+            -e BASE_URL="${{ matrix.BASE_URL }}" \
+            -e HTTP_CREDENTIALS_USERNAME="${{ matrix.USERNAME }}" \
+            -e HTTP_CREDENTIALS_PASSWORD="${{ matrix.PASSWORD }}" \
             playwright-tests sh -c "
               npx playwright test --project=${{ matrix.env }}:run:auth &&
               npx playwright test --project=${{ matrix.env }}:setup &&
