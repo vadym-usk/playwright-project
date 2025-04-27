@@ -5,7 +5,7 @@ import { ProfilePage } from '../../../src/pages/profile-page';
 test.describe('Garage - Positive', () => {
     let apiContext: APIRequestContext;
     let carId: number | undefined;
-    let profilePage;
+    let profilePage: ProfilePage;
 
     test.beforeEach(async ({ playwright, login }) => {
         const page = await login;
@@ -26,6 +26,9 @@ test.describe('Garage - Positive', () => {
         const apiResponse = await (await responsePromise).json();
 
         const fullName = await profilePage.profileName.textContent();
+        if (!fullName) {
+            throw new Error('Full name is not found on the page');
+        }
         const [uiName, uiLastName] = fullName.split(" ");
 
         expect(uiName).toBe(apiResponse.data.name);

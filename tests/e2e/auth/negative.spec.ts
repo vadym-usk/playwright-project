@@ -3,8 +3,8 @@ import { HomePage } from '../../../src/pages/home-page';
 import { RegistrationPopup } from '../../../src/pages/registration-popup';
 
 test.describe('Auth - Negative', () => {
-    let homePage;
-    let registrationPopup;
+    let homePage: HomePage;
+    let registrationPopup: RegistrationPopup;
     
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
@@ -12,7 +12,7 @@ test.describe('Auth - Negative', () => {
         registrationPopup = new RegistrationPopup(page);
     });
 
-    test('Check registration popup with empty fields', async ({ }) => {
+    test('Check registration popup with empty fields', async () => {
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm('', '', '', '');
         await registrationPopup.registrationTitle.click();
@@ -25,7 +25,7 @@ test.describe('Auth - Negative', () => {
         await registrationPopup.assertReEnterPasswordValidation('Re-enter password required');
     });
 
-    test('Check registration popup with wrong data', async ({ }) => {
+    test('Check registration popup with wrong data', async () => {
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm(' фылаорыкуадка', 'флвоы аикуло ', 'testemail.com', 'test');
         await registrationPopup.registrationTitle.click();
@@ -38,7 +38,7 @@ test.describe('Auth - Negative', () => {
         await registrationPopup.assertReEnterPasswordValidation('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
     });
 
-    test('Check registration popup with wrong length for Name, Last Name and Password fields', async ({ }) => {
+    test('Check registration popup with wrong length for Name, Last Name and Password fields', async () => {
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm('t', 'testLastNametestLastN', 'test-email+1@gmail.com', '1Gsd1Gsd1Gsd1Gsd');
         await registrationPopup.registrationTitle.click();
@@ -50,7 +50,7 @@ test.describe('Auth - Negative', () => {
         await registrationPopup.assertReEnterPasswordValidation('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
     });
 
-    test('Check registration popup with special symbols for Password field', async ({ }) => {
+    test('Check registration popup with special symbols for Password field', async () => {
         await homePage.clickSignUpBtn();
         await registrationPopup.fillRegistrationForm('testName', 'testLastName', 'test-email+1@gmail.com', 'secretpasstttt');
         await registrationPopup.registrationTitle.click();
@@ -60,7 +60,7 @@ test.describe('Auth - Negative', () => {
         await registrationPopup.assertReEnterPasswordValidation('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
     });
 
-    test('Check registration popup with not matched passwords', async ({ }) => {
+    test('Check registration popup with not matched passwords', async () => {
         await homePage.clickSignUpBtn();
         await registrationPopup.nameInput.fill('testName');
         await registrationPopup.lastNameInput.fill('testLastName');

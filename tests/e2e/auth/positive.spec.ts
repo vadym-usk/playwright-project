@@ -4,9 +4,9 @@ import { RegistrationPopup } from '../../../src/pages/registration-popup';
 import { GaragePage } from '../../../src/pages/garage-page';
 
 test.describe('Auth - Positive', () => {
-    let homePage;
-    let registrationPopup;
-    let garagePage;
+    let homePage: HomePage;
+    let registrationPopup: RegistrationPopup;
+    let garagePage: GaragePage;
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
