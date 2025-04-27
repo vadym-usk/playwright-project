@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../../../src/pages/HomePage';
 import { RegistrationPopup } from '../../../src/pages/RegistrationPopup';
 import { GaragePage } from '../../../src/pages/GaragePage';
-//import { GaragePage } from '../../../src/pages/GaragePage';
 
 test.describe('Auth - Positive', () => {
     let homePage;
