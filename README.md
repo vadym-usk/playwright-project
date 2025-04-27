@@ -116,8 +116,9 @@ These are injected into Docker containers during Cypress test runs.
 ```bash
 .
 ├── .github/
-    └── workflows/
-        └── main.yml
+│   └── workflows/
+│       └── main.yml
+│
 ├── src/
 │   ├── pages/
 │       └── GaragePage.ts
@@ -130,6 +131,7 @@ These are injected into Docker containers during Cypress test runs.
 │       └── garage/
 │           └── negative.spec.ts
 │           └── positive.spec.ts
+│
 │   └── fixtures
 │       └── fixtures.ts
 │
