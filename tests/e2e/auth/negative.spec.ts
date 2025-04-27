@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../../../src/pages/HomePage';
-import { RegistrationPopup } from '../../../src/pages/RegistrationPopup';
+import { HomePage } from '../../../src/pages/home-page';
+import { RegistrationPopup } from '../../../src/pages/registration-popup';
 
 test.describe('Auth - Negative', () => {
     let homePage;
