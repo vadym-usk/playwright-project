@@ -116,17 +116,25 @@ These are injected into Docker containers during Cypress test runs.
 ```bash
 .
 ├── .github/
-    └── workflows/
-        └── main.yml
+│   └── workflows/
+│       └── main.yml
+│
 ├── src/
-│   └── components/
-│   └── pages/
+│   ├── pages/
+│       └── GaragePage.ts
+│
 │   └── utils/
+│       └── auth.ts
+│
 ├── tests/
 │   └── e2e/
 │       └── garage/
 │           └── negative.spec.ts
 │           └── positive.spec.ts
+│
+│   └── fixtures
+│       └── fixtures.ts
+│
 ├── .dockerignore
 ├── .env.example
 ├── .gitignore

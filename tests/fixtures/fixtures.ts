@@ -1,6 +1,6 @@
 import { test as base, expect } from '@playwright/test';
 import path from 'path';
-import { GaragePage } from '../../src/pages/garagePage';
+import { GaragePage } from '../../src/pages/garage-page';
 
 export type MyFixture = {
     userGaragePage: {

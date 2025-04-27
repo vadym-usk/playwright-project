@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
-import { HomePage } from '../../src/pages/homePage';
-import { LoginPopup } from '../../src/pages/loginPopup';
-import { GaragePage } from '../../src/pages/garagePage';
+import { HomePage } from '../../src/pages/home-page';
+import { LoginPopup } from '../../src/pages/login-popup';
+import { GaragePage } from '../../src/pages/garage-page';
 
 export async function performLogin(page: Page, email: string, password: string) {
     const homePage = new HomePage(page);

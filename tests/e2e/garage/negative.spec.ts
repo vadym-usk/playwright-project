@@ -5,13 +5,10 @@ test.describe('Garage - Negative', () => {
     let apiContext: APIRequestContext;
 
     test.beforeEach(async ({ playwright, login }) => {
-        const page = await login;
         apiContext = await playwright.request.newContext();
     });
 
     test('Add new car to the garage with negative mileage', async ({ baseURL, login }) => {
-        const page = await login;
-
         const addCar = await apiContext.post(`${baseURL}/api/cars`, {
             data: {
                 "carBrandId": 1,
@@ -21,7 +18,6 @@ test.describe('Garage - Negative', () => {
         });
 
         const responseData = await addCar.json();
-        console.log("API Response:", responseData);
 
         expect(addCar.status()).toBe(400);
         expect(responseData.status).toBe("error");
@@ -29,8 +25,6 @@ test.describe('Garage - Negative', () => {
     });
 
     test('Add new car to the garage with wrong carBrandId', async ({ baseURL, login }) => {
-        const page = await login;
-
         const addCar = await apiContext.post(`${baseURL}/api/cars`, {
             data: {
                 "carBrandId": 0,
@@ -40,7 +34,6 @@ test.describe('Garage - Negative', () => {
         });
 
         const responseData = await addCar.json();
-        console.log("API Response:", responseData);
 
         expect(addCar.status()).toBe(404);
         expect(responseData.status).toBe("error");

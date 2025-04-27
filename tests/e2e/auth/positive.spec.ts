@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../../../src/pages/homePage';
-import { RegistrationPopup } from '../../../src/pages/registrationPopup';
-import { GaragePage } from '../../../src/pages/garagePage';
+import { HomePage } from '../../../src/pages/home-page';
+import { RegistrationPopup } from '../../../src/pages/registration-popup';
+import { GaragePage } from '../../../src/pages/garage-page';
 
 test.describe('Auth - Positive', () => {
-    let homePage;
-    let registrationPopup;
-    let garagePage;
+    let homePage: HomePage;
+    let registrationPopup: RegistrationPopup;
+    let garagePage: GaragePage;
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
